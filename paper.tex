@@ -37,7 +37,7 @@ One might expect human effort to become a vanishing fraction of total work. A 10
 
 Why? And is this a temporary limitation of current tools, or something more structural?
 
-In this paper, we construct a simple model to investigate this question. We do not claim to prove a law of nature. Like Amdahl's Law in parallel computing --- which is ultimately just algebra on the definition of ``serial fraction'' but which reframed decades of processor design decisions --- our model's value lies not in its formal depth but in the \emph{mechanism it isolates} and the \emph{non-obvious consequences it derives}.
+In this paper, we construct a simple model to investigate this question. We do not claim to prove a law of nature. Like Amdahl's Law in parallel computing \citep{amdahl1967} --- which is ultimately just algebra on the definition of ``serial fraction'' but which reframed decades of processor design decisions --- our model's value lies not in its formal depth but in the \emph{mechanism it isolates} and the \emph{non-obvious consequences it derives}.
 
 The model (Section~\ref{sec:model}) decomposes human effort into specification, verification, correction, and decomposition, each parameterized by a \emph{novelty fraction} $\nu$: the share of decisions not covered by the agent's prior knowledge. We make five explicit assumptions, discuss what happens when each breaks (Section~\ref{sec:assumptions}), and derive several consequences that are not obvious from the assumptions alone:
 
@@ -152,7 +152,7 @@ Verifiability modulates the \emph{coefficient} on the linear term but does not c
 
 \subsection{The March of Nines}
 
-Karpathy's ``march of nines'' provides a complementary mechanism for why $H$ remains linear. In a multi-step workflow of $E$ steps, if each step succeeds independently with probability $p$, end-to-end reliability is $p^E$. At $p = 0.99$ and $E = 100$, end-to-end success is only $36.6\%$. At $p = 0.95$, it drops to $0.6\%$.
+Karpathy's ``march of nines'' \citep{karpathy2025verify} provides a complementary mechanism for why $H$ remains linear. The phrase refers to the observation that each additional ``nine'' of per-step reliability (from 90\% to 99\% to 99.9\%, and so on) requires roughly equal engineering effort to achieve, yet the compounding effect of unreliability across steps is devastating. In a multi-step workflow of $E$ steps, if each step succeeds independently with probability $p$, end-to-end reliability is $p^E$. At $p = 0.99$ and $E = 100$, end-to-end success is only $36.6\%$. At $p = 0.95$, it drops to $0.6\%$.
 
 To maintain end-to-end reliability above a target $R$, the human must checkpoint every $k = \lfloor \log R / \log p \rfloor$ steps. The number of checkpoints is $E/k$---linear in $E$ for any fixed $p$ and $R$. Moreover, each additional ``nine'' of per-step reliability (from 90\% to 99\% to 99.9\%) requires roughly equal engineering effort, making it expensive to increase $k$. This means that even as agents improve, the checkpoint frequency decreases only logarithmically with capability while the task length $E$ grows linearly, keeping total checkpoint effort $O(E)$.
 
@@ -438,13 +438,13 @@ We stress-test our claims by considering the strongest counterarguments. Our the
 
 \subsection{The Continual Learning Escape}
 
-If agents could learn during task execution---updating their prior from each interaction, as humans do---then effective novelty $\nu(t)$ would decay, potentially yielding $H_{\text{spec}} \sim O(\log E)$. Ilya Sutskever, co-founder of Safe Superintelligence Inc., argues that current models ``generalize dramatically worse than people'' and that this is a solvable research problem. \textbf{Condition for falsification}: $\nu(t) \sim t^{-\alpha}$ for $\alpha > 0$ within a single task. \textbf{Assessment}: No current system demonstrates this; we treat it as the most likely route to eventual falsification, requiring an architectural breakthrough rather than incremental scaling.
+If agents could learn during task execution---updating their prior from each interaction, as humans do---then effective novelty $\nu(t)$ would decay, potentially yielding $H_{\text{spec}} \sim O(\log E)$. Ilya Sutskever, co-founder of Safe Superintelligence Inc., argues that current models ``generalize dramatically worse than people'' and that this is a solvable research problem \citep{sutskever2025}. \textbf{Condition for falsification}: $\nu(t) \sim t^{-\alpha}$ for $\alpha > 0$ within a single task. \textbf{Assessment}: No current system demonstrates this; we treat it as the most likely route to eventual falsification, requiring an architectural breakthrough rather than incremental scaling.
 
 \subsection{Other Counterarguments}
 
 \textbf{Autonomous exploration.} If agents can explore, hypothesize, and self-verify without human input, $H$ could decouple from $E$. But autonomous exploration requires verification of novel results---either a trusted oracle or human judgment---and uncomprehended output is noise, not work. This escape is plausible in formally verifiable domains (mathematics, certain engineering) but unlikely where taste, judgment, or real-world grounding matter.
 
-\textbf{Cognitive primitives.} Nielsen argues AI might create new cognitive operations that restructure what counts as routine---a phase transition, not linear speedup. This is compatible with our model if the transition operates by reducing $\nu$ discontinuously. Historical cognitive tools (writing, algebra, programming) took decades to diffuse; we cannot rule out faster transitions but note the precedent.
+\textbf{Cognitive primitives.} Nielsen \citep{nielsen2024} argues AI might create new cognitive operations that restructure what counts as routine---a phase transition, not linear speedup. This is compatible with our model if the transition operates by reducing $\nu$ discontinuously. Historical cognitive tools (writing, algebra, programming) took decades to diffuse; we cannot rule out faster transitions but note the precedent.
 
 \textbf{Amortization across tasks.} Over many similar tasks, shared structure reduces the novel fraction. This is the primary mechanism by which agents improve over time, but it operates by moving the novelty boundary, not changing the scaling law. Dwarkesh Patel's ``Napoleon argument'' \citep{patel2023} reinforces this: if parallelism helped, labs would already redirect thousands of researchers to their hardest problems.
 
@@ -500,9 +500,9 @@ Our framework connects to Acemoglu and Restrepo's task-based models \citep{acemo
 
 \textbf{Polarization along the novelty axis.} Workers whose jobs are primarily routine and verifiable (data entry, basic coding, translation) face displacement. Those with high-novelty components (strategy, design, research) are buffered by the linear bottleneck. But our model adds a nuance: \emph{workers who can reduce $\nu$ for others}---writing specifications, designing test suites, architecting for agent delegation---become more valuable. This is Acemoglu's ``new task creation'': AI generates demand for orchestration and verification meta-tasks that did not previously exist.
 
-\textbf{Smaller firms, higher leverage.} If optimal team size decreases with agent capability (Section~\ref{sec:org}), AI-era firms should be smaller and more productive per employee---Coase's theory of the firm in reverse. AI reduces individual production costs but increases per-person coordination costs, pushing the efficient boundary toward smaller organizations.
+\textbf{Smaller firms, higher leverage.} If optimal team size decreases with agent capability (Section~\ref{sec:org}), AI-era firms should be smaller and more productive per employee---Coase's theory of the firm in reverse. AI reduces individual production costs but increases per-person coordination costs, pushing the efficient boundary toward smaller organizations. This echoes Coase's theory of the firm \citep{coase1937}, which predicts that firms expand until the cost of organizing an additional transaction internally equals the cost of carrying it out on the open market; AI shifts this boundary by lowering individual production costs while raising internal coordination costs.
 
-\textbf{The ``so-so automation'' risk.} Our framework identifies when Acemoglu's ``so-so automation'' risk is highest: AI deployed on marginally routine tasks ($\nu$ just below the automation threshold), yielding small cost savings while displacing labor. Firms should prioritize the deep-routine regime where gains are large and unambiguous.
+\textbf{The ``so-so automation'' risk.} Our framework identifies when the ``so-so automation'' risk described by Acemoglu and Restrepo \citep{acemoglu2019}---technologies that displace workers without generating large productivity gains---is highest: AI deployed on marginally routine tasks ($\nu$ just below the automation threshold), yielding small cost savings while displacing labor. Firms should prioritize the deep-routine regime where gains are large and unambiguous.
 
 \textbf{Aggregate growth: large but not explosive.} The Penn Wharton Budget Model \citep{pennwharton2025} projects AI will raise US GDP by 1.5\% by 2035; Acemoglu estimates 0.53--0.66\% TFP growth over a decade. Our framework explains why: the novelty bottleneck limits impact to the routine fraction of economic activity. The result is a sustained improvement comparable to electricity or computing, but not the discontinuous explosion that singularity narratives predict.
 
@@ -661,6 +661,21 @@ World Economic Forum.
 Penn Wharton Budget Model.
 \newblock The Projected Impact of Generative AI on Future Productivity Growth.
 \newblock Technical report, September 2025.
+
+\bibitem[Sutskever(2025)]{sutskever2025}
+Ilya Sutskever.
+\newblock Sequence to Sequence Learning: Beyond the Obvious (NeurIPS 2024 keynote).
+\newblock December 2024.
+
+\bibitem[Coase(1937)]{coase1937}
+Ronald H. Coase.
+\newblock The Nature of the Firm.
+\newblock \emph{Economica}, 4(16):386--405, 1937.
+
+\bibitem[Acemoglu and Restrepo(2019)]{acemoglu2019}
+Daron Acemoglu and Pascual Restrepo.
+\newblock Automation and New Tasks: How Technology Displaces and Reinstates Labor.
+\newblock \emph{Journal of Economic Perspectives}, 33(2):3--30, 2019.
 
 \end{thebibliography}
 
