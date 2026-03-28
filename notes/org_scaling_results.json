@@ -1,0 +1,20 @@
+{
+  "optimal_team_sizes": {
+    "No AI": {
+      "n_star": 100.0,
+      "T_star": 100.0
+    },
+    "Basic AI (2x throughput)": {
+      "n_star": 59.8,
+      "T_star": 83.7
+    },
+    "Strong AI (5x throughput)": {
+      "n_star": 31.6,
+      "T_star": 63.2
+    },
+    "Frontier AI (10x throughput)": {
+      "n_star": 18.3,
+      "T_star": 54.8
+    }
+  }
+}

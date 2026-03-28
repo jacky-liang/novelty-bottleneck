@@ -1,0 +1,78 @@
+{
+  "exponents": {
+    "Low Novelty (\u03bd=0.1)": 0.9988022051326338,
+    "Medium Novelty (\u03bd=0.3)": 1.0042039660767426,
+    "High Novelty (\u03bd=0.8)": 1.00196398697614,
+    "High Cap + Self-Correct": 1.004143072485611
+  },
+  "scaling_results": {
+    "Low Novelty (\u03bd=0.1)": {
+      "E": 5000,
+      "H_total_mean": 1887.02,
+      "H_total_std": 56.532641898287395,
+      "H_spec_mean": 495.94,
+      "H_verify_mean": 250.0,
+      "H_correct_mean": 1141.08,
+      "H_total_over_E": 0.377404
+    },
+    "Medium Novelty (\u03bd=0.3)": {
+      "E": 5000,
+      "H_total_mean": 4206.18,
+      "H_total_std": 88.44765457602593,
+      "H_spec_mean": 1503.66,
+      "H_verify_mean": 250.0,
+      "H_correct_mean": 2452.52,
+      "H_total_over_E": 0.8412360000000001
+    },
+    "High Novelty (\u03bd=0.8)": {
+      "E": 5000,
+      "H_total_mean": 9949.1,
+      "H_total_std": 79.10227556777365,
+      "H_spec_mean": 3999.46,
+      "H_verify_mean": 250.0,
+      "H_correct_mean": 5699.64,
+      "H_total_over_E": 1.98982
+    },
+    "High Cap + Self-Correct": {
+      "E": 5000,
+      "H_total_mean": 1801.02,
+      "H_total_std": 42.35209085747715,
+      "H_spec_mean": 1504.98,
+      "H_verify_mean": 100.0,
+      "H_correct_mean": 196.04,
+      "H_total_over_E": 0.36020399999999997
+    }
+  },
+  "mi_results": {
+    "MI=0.0": {
+      "E": 5000,
+      "H_mean": 5250.000000000491,
+      "H_std": 9.094947017729282e-13,
+      "H_over_E": 1.0500000000000982
+    },
+    "MI=0.3": {
+      "E": 5000,
+      "H_mean": 3753.820000000325,
+      "H_std": 31.709109101334526,
+      "H_over_E": 0.7507640000000649
+    },
+    "MI=0.6": {
+      "E": 5000,
+      "H_mean": 2250.619999999935,
+      "H_std": 37.29873456300139,
+      "H_over_E": 0.450123999999987
+    },
+    "MI=0.9": {
+      "E": 5000,
+      "H_mean": 752.819999999955,
+      "H_std": 21.986987060526356,
+      "H_over_E": 0.150563999999991
+    },
+    "MI=1.0": {
+      "E": 5000,
+      "H_mean": 299.5600000000282,
+      "H_std": 6.490485343948369,
+      "H_over_E": 0.05991200000000564
+    }
+  }
+}
