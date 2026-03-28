@@ -58,7 +58,7 @@ All simulations use fixed random seeds for exact reproducibility. See §4.1 of t
 ```
 @article{noveltybottleneck2026,
   title={The Novelty Bottleneck: A Framework for Understanding Human Effort Scaling in AI-Assisted Work},
-  author={Liang, Jacky and {Claude Opus 4.6}},
+  author={Liang, Jacky},
   year={2026},
   month={March}
 }
